@@ -1,0 +1,17 @@
+{
+    "name": "UI",
+    "rootNamespace": "Script.Core.UI",
+    "references": [
+        "GUID:e5f74d23b70862c43860d9c493d7163f",
+        "GUID:69bf7cf516da7cf4a96ec874d53b7a59"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

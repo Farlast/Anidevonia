@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aabbf45cdffc7a4180fe4740dff1077, type: 3}
+  m_Name: Footstep-TallGrass
+  m_EditorClassIdentifier: 
+  audios:
+  - {fileID: 8300000, guid: 1ce1396ddb76bf143b85bae8b95acd5c, type: 3}
+  - {fileID: 8300000, guid: e7abdcc89fe62ab4b9dc023e1a243670, type: 3}
+  - {fileID: 8300000, guid: aea4fa46d9735174a9d4c322062a58b2, type: 3}
+  - {fileID: 8300000, guid: ef50a1fce058cbe4b8a464165ab39744, type: 3}
+  - {fileID: 8300000, guid: 448d317b3d1789f4c8a7b8491e64c46c, type: 3}
+  - {fileID: 8300000, guid: 3c423389d857fbf42b7d755770d9d1fc, type: 3}
+  - {fileID: 8300000, guid: a86cde68d45e32e4aaf2dad5cc660352, type: 3}
+  - {fileID: 8300000, guid: df49b5fb5fbef9c40b5238c81c341e32, type: 3}
+  - {fileID: 8300000, guid: 0b8a0b67687bb484e844561f9e6a7744, type: 3}

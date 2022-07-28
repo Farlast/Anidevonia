@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - EventTrigger
+  - Water
+  - UI
+  - Player
+  - Ground
+  - Enemy
+  - HurtBox
+  - lframePlayer
+  - Projectile
+  - EnemyProjectile
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3371148775
+    locked: 0
+  - name: Platfrom
+    uniqueID: 2570353973
+    locked: 0
+  - name: Player
+    uniqueID: 4265354201
+    locked: 0
+  - name: Enemy
+    uniqueID: 243807747
+    locked: 0
+  - name: Effect
+    uniqueID: 1633095157
+    locked: 0
+  - name: ForeGround
+    uniqueID: 596796657
+    locked: 0

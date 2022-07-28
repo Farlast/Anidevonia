@@ -1,0 +1,19 @@
+{
+    "name": "Player",
+    "rootNamespace": "Script.Player",
+    "references": [
+        "GUID:e5f74d23b70862c43860d9c493d7163f",
+        "GUID:69bf7cf516da7cf4a96ec874d53b7a59",
+        "GUID:c7a9d9ca05d693d4c814dcf310296707",
+        "GUID:c2d1bd0e9885e1e4aa2f5db548dd4925"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
