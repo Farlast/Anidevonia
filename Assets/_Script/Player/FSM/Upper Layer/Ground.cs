@@ -39,7 +39,6 @@ namespace Script.Player
         public override void OnStateEnter()
         {
             InitializeSubState();
-            Ctx.JumpCount = 0;
         }
 
         public override void OnStateExit()

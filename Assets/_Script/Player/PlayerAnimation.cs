@@ -12,16 +12,29 @@ namespace Script.Player
         internal readonly int Run = Animator.StringToHash("Run");
         internal readonly int JumpUp = Animator.StringToHash("JumpUp");
         internal readonly int JumpDown = Animator.StringToHash("JumpDown");
+
         internal readonly int Attack = Animator.StringToHash("Attack");
+        internal readonly int AttackCombo2 = Animator.StringToHash("AttackCombo2");
+        internal readonly int AttackCombo3 = Animator.StringToHash("AttackCombo3");
+        internal readonly int AttackCombo4 = Animator.StringToHash("AttackCombo4");
+
         internal readonly int AttackUp = Animator.StringToHash("AttackUp");
         internal readonly int AttackDown = Animator.StringToHash("AttackDown");
         internal readonly int Cast = Animator.StringToHash("Casting");
         internal readonly int Dash = Animator.StringToHash("Dash");
+        internal readonly int BackDash = Animator.StringToHash("BackDash");
         internal readonly int KnockBack = Animator.StringToHash("KnockBack");
-        public void AirAnimation(float velocityY)
+        
+        private int lastAnimation;
+        public void KnockBackAnimation()
         {
+            PlayAnimation(KnockBack, 0.15f);
+            lastAnimation = KnockBack;
+        }
+        public void AirAnimation(float velocityY)
+        { 
             int jump = velocityY < 0 ?  JumpDown:JumpUp;
-            PlayAnimation(jump,0.35f);
+            PlayAnimation(jump,0.2f);
         }
         public void RunAnimation()
         {
@@ -34,6 +47,22 @@ namespace Script.Player
         public void AttackAnimation()
         {
             PlayAnimation(Attack,0.1f);
+        }
+        public void AttackComboAnimation(int combo)
+        {
+            switch (combo)
+            {
+                case 2:
+                    PlayAnimation(AttackCombo2, 0.1f);
+                    break;
+                case 3:
+                    PlayAnimation(AttackCombo3, 0.1f);
+                    break;
+                case 4:
+                    PlayAnimation(AttackCombo4, 0.1f);
+                    break;
+            }
+            
         }
         public void AttackUpAnimation()
         {
@@ -53,9 +82,12 @@ namespace Script.Player
         }
         public void DashAnimation()
         {
-            PlayAnimation(Dash,0.25f);
+            PlayAnimation(Dash,0.2f);
         }
-
+        public void BackDashAnimation()
+        {
+            PlayAnimation(BackDash, 0.2f);
+        }
         //--------------------
         public void AttackEffectOn()
         {
@@ -67,7 +99,12 @@ namespace Script.Player
         }
         private void PlayAnimation(int hash,float transitionTime)
         {
+            if(IsNotSameAnimation(hash))
             animator.CrossFade(hash,transitionTime, 0);
+        }
+        private bool IsNotSameAnimation(int hash)
+        {
+            return lastAnimation != hash;
         }
 
     }

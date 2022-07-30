@@ -23,7 +23,7 @@ namespace Script.Enemy
             controller.MoveVector.Set(0, 0);
             animationFinish = false;
             controller.Animator.AttackAnimation();
-            TimerSystem.Create(() => { animationFinish = true; }, 0.5f, controller.Id + "attackAnimation");
+            TimerSystem.Create(() => { animationFinish = true; }, 0.5f);
         }
 
         public override void ExitState()

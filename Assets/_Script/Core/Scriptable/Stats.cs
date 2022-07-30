@@ -17,5 +17,6 @@ namespace Script.Core
         public Material FlashMat;
         public GameObject TakeHitEffect;
         public float AttackKnockBack;
+        public float StuntTime;
     }
 }

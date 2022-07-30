@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 1336693013851091943}
   - component: {fileID: 1336693013851091940}
   - component: {fileID: 1336693013851091961}
+  - component: {fileID: 7125380835786414904}
   m_Layer: 8
   m_Name: Crystal Mantis
   m_TagString: Enemy
@@ -220,11 +221,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407c2c234a5659448ae3d8bf6f9b4a61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 
   Stats: {fileID: 11400000, guid: 56c26bc6e2f1a4c49bd8e44f4413d6fd, type: 2}
   hp: 0
   spriteParent: {fileID: 406226930602760028}
   attackBox: {fileID: 1336693014493951971}
+  stateController: {fileID: 1336693013851091942}
 --- !u!61 &1336693013851091950
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -286,7 +287,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 5
   m_Material: {fileID: 6200000, guid: a342b1f71b73a924f92515bb544d0bbd, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -309,7 +310,7 @@ MonoBehaviour:
   CloseAwareness: 0
   TargrtLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 1088
   Ground:
     serializedVersion: 2
     m_Bits: 128
@@ -372,13 +373,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818158c2f0716af40bd92c413a40601b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 
   MoveVector: {x: 0, y: 0}
   <CurrentState>k__BackingField: {fileID: 1336693013851091943}
   <View>k__BackingField: {fileID: 1336693013851091936}
   <Enemy>k__BackingField: {fileID: 1336693013851091948}
   <Animator>k__BackingField: {fileID: 1336693013851091941}
   <LastDiraction>k__BackingField: 0
+  <Velocity>k__BackingField: {x: 0, y: 0}
+  <Takehit>k__BackingField: 0
 --- !u!114 &1336693013851091943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,6 +394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveTo: {fileID: 1336693013851091940}
+  Stunt: {fileID: 7125380835786414904}
 --- !u!114 &1336693013851091940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,6 +410,7 @@ MonoBehaviour:
   CloseRange: 2.8
   MeleeAttack: {fileID: 1336693013851091961}
   LostPlayer: {fileID: 1336693013851091943}
+  Stunt: {fileID: 7125380835786414904}
 --- !u!114 &1336693013851091961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,6 +424,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Oncomplete: {fileID: 1336693013851091943}
+  Stunt: {fileID: 7125380835786414904}
+--- !u!114 &7125380835786414904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336693013851091946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f7551b3d0a774d42ba336ee25574b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AfterFinish: {fileID: 1336693013851091943}
 --- !u!1 &1336693014041629733
 GameObject:
   m_ObjectHideFlags: 0

@@ -103,6 +103,17 @@
                 },
                 {
                     "name": "",
+                    "id": "dfc5ddd3-a05e-43f0-ade5-32f7dc225b4b",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ArrowKeybord",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "d42347f2-7a3e-4e22-b187-9657ece21d83",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -119,6 +130,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cdbe7d0a-4eb9-4911-b5eb-e82349420f9a",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ArrowKeybord",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -147,11 +169,22 @@
                 },
                 {
                     "name": "",
+                    "id": "14de8a18-021e-44a6-9530-141fd27b4dd2",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ArrowKeybord",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "e5574834-dd8d-4f5f-aaf5-49e8d4380cdd",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keybord",
+                    "groups": "Keybord;ArrowKeybord",
                     "action": "PauseMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -289,12 +322,67 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "ArrowKey",
+                    "id": "37c5df1e-b8ed-4fb5-b46e-32774548ed08",
+                    "path": "2DVector(mode=2)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "b323c6cc-f360-4dfe-a146-aa52a219d8e7",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "86ae42dd-44af-437d-8b98-a9559e2426dd",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "9c49a0ed-0a9f-4db0-9c99-1e9b16977b5c",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "83f2aff6-81bf-4c4f-adb9-1746025adfd4",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "c3e78eef-f08a-40dd-b639-8732e53499b8",
                     "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keybord",
+                    "groups": "Keybord;ArrowKeybord",
                     "action": "Inventory",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -334,6 +422,17 @@
                 },
                 {
                     "name": "",
+                    "id": "e3a8171c-d2a3-4c00-9595-80423ff1852e",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ArrowKeybord",
+                    "action": "Cast",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "85403095-5c62-4997-9402-a51fd7ef7d4e",
                     "path": "<Keyboard>/l",
                     "interactions": "",
@@ -350,6 +449,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
+                    "action": "SkillAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3a578053-07e5-4430-bdd9-ea2ca69b149e",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ArrowKeybord",
                     "action": "SkillAction",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -525,6 +635,17 @@
             "devices": [
                 {
                     "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "ArrowKeybord",
+            "bindingGroup": "ArrowKeybord",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
                     "isOptional": false,
                     "isOR": false
                 }

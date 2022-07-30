@@ -19,7 +19,7 @@ namespace Script.Player
                 if(Ctx.IsGround)
                     SwitchState(_factory.Ground());
                 else
-                    SwitchState(_factory.Ground());
+                    SwitchState(_factory.Air());
             }
         }
 
@@ -27,17 +27,18 @@ namespace Script.Player
         {
             
         }
-        // state switch and reEnter when base state change.
+        // state switch and ReEnter when base state change.
         public override void OnStateEnter()
         {
             if (Ctx.DashStates != DashState.Ready) return;
+            
             if(Ctx.Stats.HasIframeDash) Ctx.SetIframeLayer(Ctx.Stats.MaxDashTime);
             Ctx.RemoveGravity();
             Ctx.FlipSprite();
-            Ctx.AnimationPlayer.DashAnimation();
-            dashDirection = Ctx.InputReader.LatesDirection.x;
+            SetDashDiraction();
+            dashTimer = 0;
         }
-
+       
         public override void OnStateExit()
         {
             if (Ctx.DashStates == DashState.Dashing) return;
@@ -50,7 +51,7 @@ namespace Script.Player
         {
             if(dashTimer <= Ctx.Stats.MaxDashTime && !Ctx.IsWallAtFront && !Ctx.HealthSystem.IsTakeDamage)
             {
-                Ctx.NewVelocity.Set(Ctx.Stats.DashSpeed * dashDirection, 0);
+                Ctx.NewVelocity.Set(Ctx.Stats.DashSpeed * dashDirection * Ctx.Stats.GetDashVelocity(dashTimer), 0);
                 Ctx.rb.velocity = Ctx.NewVelocity;
                 dashTimer += Time.deltaTime;
             }
@@ -64,6 +65,19 @@ namespace Script.Player
         public override void OnStateRun()
         {
             CheckSwitchState();
+        }
+        private void SetDashDiraction()
+        {
+            if (Ctx.MoveInputVector.x == 0)
+            {
+                dashDirection = Ctx.InputReader.LatesDirection.x * -1;
+                Ctx.AnimationPlayer.BackDashAnimation();
+            }
+            else
+            {
+                dashDirection = Ctx.InputReader.LatesDirection.x;
+                Ctx.AnimationPlayer.DashAnimation();
+            }
         }
         IEnumerator UpdateDash()
         {

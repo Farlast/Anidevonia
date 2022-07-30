@@ -7,9 +7,14 @@ namespace Script.Enemy
     public class Idle : State
     {
         [SerializeField] State MoveTo;
+        [SerializeField] State Stunt;
         public override void CheckSwitchState()
         {
-            if (controller.View.SeeTarget)
+            if (controller.Takehit)
+            {
+                SwicthState(Stunt);
+            }
+            else if (controller.View.SeeTarget)
             {
                 SwicthState(MoveTo);
             }
@@ -29,6 +34,7 @@ namespace Script.Enemy
         public override void UpdateState()
         {
             CheckSwitchState();
+            controller.MoveVector.Set(controller.Velocity.x, controller.Velocity.y);
         }
     }
 }

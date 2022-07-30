@@ -1,20 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Script.Core;
-using System;
 
 namespace Script.Enemy
 {
     public class StateController : MonoBehaviour
     {
-        public string Id;
         public Vector2 MoveVector;
-        [field: SerializeField] public State CurrentState { get; set; }
-        [field: SerializeField] public FieldOfView View { get; private set; }
-        [field: SerializeField] public Enemy Enemy { get; private set; }
-        [field: SerializeField] public EnemyAnimation Animator { get; private set; }
-        [field: SerializeField] public float LastDiraction { get; private set; }
+        [field: SerializeField] internal State CurrentState { get; set; }
+        [field: SerializeField] internal FieldOfView View { get; private set; }
+        [field: SerializeField] internal Enemy Enemy { get; private set; }
+        [field: SerializeField] internal EnemyAnimation Animator { get; private set; }
+        [field: SerializeField] internal float LastDiraction { get; private set; }
+        [field: SerializeField] internal Vector2 Velocity { get; private set; }
+        [field: SerializeField] internal bool Takehit { get; set; }
 
         private Rigidbody2D rb;
         private void Awake()
@@ -27,7 +25,6 @@ namespace Script.Enemy
         }
         private void Start()
         {
-            Id = Guid.NewGuid().ToString();
             MoveVector.Set(0, 0);
             rb = GetComponent<Rigidbody2D>();
             LastDiraction = -1;
@@ -36,6 +33,7 @@ namespace Script.Enemy
         {
             CurrentState.UpdateState();
             rb.velocity = MoveVector;
+            Velocity = rb.velocity;
             if (MoveVector.x != 0) LastDiraction = MoveVector.x;
         }
     }

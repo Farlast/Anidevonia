@@ -11,7 +11,7 @@ namespace Script.Player
 
         public override void CheckSwitchState()
         {
-            if (Ctx.Combat.IsAttack)
+            if (Ctx.Combat.IsAttackPress && !Ctx.Combat.IsAttackCooldown)
             {
                 SwitchState(_factory.Attack());
             }
@@ -35,7 +35,6 @@ namespace Script.Player
 
         public override void OnStateRun()
         {
-            if (!Ctx.IsGround) Ctx.AnimationPlayer.AirAnimation(Ctx.rb.velocity.y);
             CheckSwitchState();
         }
 

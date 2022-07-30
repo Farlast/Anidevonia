@@ -143,7 +143,7 @@ namespace Script.Core.Input
         // prees action before time
         // count until expire
         // or action are taken.
-        public void IAttackBuffering()
+        public void AttackBufferCalculation()
         {
 
             if (attackBufferingTimeCounter > 0f)

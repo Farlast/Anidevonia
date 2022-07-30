@@ -23,3 +23,4 @@ MonoBehaviour:
   FlashMat: {fileID: 2100000, guid: 9bd7b11cc219a7b4094378cb60158880, type: 2}
   TakeHitEffect: {fileID: 4836524762306965119, guid: 9af2f31f3e13b5749a338892079c6d71, type: 3}
   AttackKnockBack: 10
+  StuntTime: 0.3

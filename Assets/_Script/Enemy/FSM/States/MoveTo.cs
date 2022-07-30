@@ -9,9 +9,14 @@ namespace Script.Enemy
         [SerializeField] float CloseRange = 4f;
         [SerializeField] State MeleeAttack;
         [SerializeField] State LostPlayer;
+        [SerializeField] State Stunt;
         public override void CheckSwitchState()
         {
-            if (controller.View.DistanceToTarget < CloseRange)
+            if (controller.Takehit)
+            {
+                SwicthState(Stunt);
+            }
+            else if (controller.View.DistanceToTarget < CloseRange)
             {
                 SwicthState(MeleeAttack);
             }

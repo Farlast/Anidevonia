@@ -32,14 +32,14 @@ namespace Script.Player
         internal bool IsWallAtFront { get; private set; }
         internal bool IsJumpPress { get; private set; }
         internal bool IsDash { get; private set; }
-        internal int JumpCount { get; set; }
+        internal int JumpCount { get;private set; }
 
         [Space]
         [Header("[debug]")]
         [SerializeField] string currentState;
         [SerializeField] string currentSubState;
         [SerializeField] bool drawGismos;
-        [SerializeField] Vector2 velocity;
+        [SerializeField] internal Vector2 Velocity;
 
         [Space]
         [Header("[Collision]")]
@@ -80,12 +80,14 @@ namespace Script.Player
         {
             currentState = CurrentState.GetType().Name;
             currentSubState = CurrentState.CurrentSubName;
-            velocity = rb.velocity;
+            Velocity = rb.velocity;
 
+            if (IsGround) JumpCount = 0;
             CurrentState.UpdateStates();
             GroundCheck();
             WallCheck();
             InputReader.JumpBufferCalculation();
+            InputReader.AttackBufferCalculation();
         }
         private void FixedUpdate()
         {
@@ -133,6 +135,7 @@ namespace Script.Player
         private void DoJump()
         {
             if (JumpCount >= 2 || wasAction) return;
+
             InputReader.ResetJumpBuffer();
             NewVelocity.Set(rb.velocity.x, Stats.JumpForce);
             rb.velocity = NewVelocity;

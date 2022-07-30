@@ -15,10 +15,10 @@ namespace Script.Player
         [SerializeField] LayerMask attackLayer;
         [Header("Projectile")]
         [SerializeField] GameObject projectile;
-        [SerializeField] GameObject waterOrb;
-        [SerializeField] PlayerProjectilePool pool;
+        [SerializeField] ProjectilePool pool;
 
-        internal bool IsAttack { get; private set; }
+        internal bool IsAttackCooldown { get; private set; }
+        internal bool IsAttackPress { get; private set; }
         internal bool IsHitTarget { get; private set; }
         internal bool IsCast { get; private set; }
         internal bool IsSkillAction { get; private set; }
@@ -37,28 +37,26 @@ namespace Script.Player
         }
         void OnAttack(bool action)
         {
-            IsAttack = action;
+            IsAttackPress = action;
         }
         void CastOrb()
         {
-            // is duplicate reset position
-            //FireProjectile();
-            ResetCastOrbPosition();
+            FireProjectile();
         }
         void FireProjectile()
         {
-            pool.GetAndAutoReturnToPool(attackPos,InputReader.LatesDirection, 0.35f);
+            var proj = pool.GetAndSetPosition(attackPos);
+            proj.SetUp(attackPos.position, InputReader.LatesDirection, 0.35f, pool);
         }
-        void ResetCastOrbPosition()
-        {
-            waterOrb.transform.position = attackPosition.transform.position;
-            waterOrb.SetActive(true);
-            waterOrb.GetComponent<WaterOrb>().SetUp(InputReader.LatesDirection);
-        }
-      
+       
         void SkillAction()
         {
             print("SkillAction");
+        }
+        public void SetAttackCoolDown()
+        {
+            IsAttackCooldown = true;
+            TimerSystem.Create(() => { IsAttackCooldown = false; }, stats.AttackEndComboTime);
         }
         public void Attack()
         {

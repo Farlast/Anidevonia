@@ -43,7 +43,7 @@ namespace Script.Player
 
             finish = false;
             var info = Ctx.HealthSystem.GetDamageInfo();
-
+            Ctx.AnimationPlayer.KnockBackAnimation();
             Ctx.rb.velocity = Vector2.zero;
             Ctx.rb.inertia = 0;
             Ctx.rb.AddForce(CalculateKnockbackTaken(info), ForceMode2D.Impulse);

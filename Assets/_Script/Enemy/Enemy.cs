@@ -13,8 +13,8 @@ namespace Script.Enemy
 
         [SerializeField] private Transform spriteParent;
         [SerializeField] private GameObject attackBox;
-        
-        private GameObject takeHitEffect;
+        [SerializeField] private StateController stateController;
+
         private Material currentMaterial;
         private float flashValue;
         private float maxFlashValue;
@@ -59,12 +59,12 @@ namespace Script.Enemy
             hp -= info.Damage;
             hp = hp < 0 ? 0 : hp;
             flashValue = maxFlashValue;
-            takeHitEffect = EffectPool.GetAndAutoReturnToPool(transform,0.3f);
-
+            EffectPool.GetAndAutoReturnToPool(transform,0.3f);
             if (hp <= 0) {
                 Dead();
                 return;
             }
+            stateController.Takehit = true;
         }
        
         public void FlipSprite(float lastDiraction)

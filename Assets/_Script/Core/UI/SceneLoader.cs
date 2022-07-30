@@ -7,11 +7,16 @@ namespace Script.Core.UI
     {
         void Start()
         {
-            SceneManager.LoadSceneAsync("Map1-1", LoadSceneMode.Additive).completed += (async) =>
-            {
-                SceneManager.LoadSceneAsync("Player",LoadSceneMode.Additive);
-                SceneManager.LoadSceneAsync("UI", LoadSceneMode.Additive);
-            };
+            LoadPlayableScene();
+        }
+        void LoadPlayableScene()
+        {
+            SceneManager.LoadSceneAsync("Map1-1", LoadSceneMode.Additive).completed += Setup;
+        }
+        void Setup(AsyncOperation operation)
+        {
+            SceneManager.LoadSceneAsync("Player", LoadSceneMode.Additive);
+            SceneManager.LoadSceneAsync("UI", LoadSceneMode.Additive);
         }
     }
 }

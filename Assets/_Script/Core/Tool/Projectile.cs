@@ -5,41 +5,40 @@ namespace Script.Core
 {
     public class Projectile : MonoBehaviour
     {
-        private Rigidbody2D rb;
-        [SerializeField] private float moveSpeed;
-        [SerializeField] private float attackDamage;
-
-        private float moveTime;
+        [SerializeField] protected float moveSpeed;
+        [SerializeField] protected float attackDamage;
+        [SerializeField] protected ProjectilePool pool;
+        protected Rigidbody2D rb;
+        protected float lifeTime;
         
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
         }
-        public void SetUp(Vector2 origin,Vector2 shootDir, float lifeTime)
+        public virtual void SetUp(Vector2 origin, Vector2 shootDir, float lifeTime, ProjectilePool pool)
         {
+            this.pool = pool;
             transform.position = origin;
-            moveTime = lifeTime;
+            this.lifeTime = lifeTime;
+            Rotation(shootDir);
             StartCoroutine(Move(shootDir));
         }
-        IEnumerator Move(Vector2 diraction)
+        protected virtual void Rotation(Vector2 shootDir)
         {
-            float counter = 0;
-            
+            transform.eulerAngles = shootDir.x < 0 ? new Vector2(0, 180) : new Vector2(0, 0);
+        }
+        protected virtual IEnumerator Move(Vector2 diraction)
+        {
+            rb.velocity = Vector2.zero;
+            yield return new WaitForFixedUpdate();
             rb.velocity = new Vector2(diraction.x * moveSpeed, diraction.y * moveSpeed);
-            
-            while (counter < moveTime)
-            {
-                counter += Time.deltaTime;
-                yield return null;
-            }
-            print("finish");
         }
         
         private void OnTriggerEnter2D(Collider2D collision)
         {
             Attack(collision);
         }
-        public virtual void Attack(Collider2D collision)
+        protected virtual void Attack(Collider2D collision)
         {
             if (collision.TryGetComponent(out IDamageable target))
             {
@@ -48,10 +47,13 @@ namespace Script.Core
             }
             else
             {
-                print("ground des");
-                gameObject.SetActive(false);
-                EffectPool.GetAndAutoReturnToPool(transform, 0.3f);
+                OnHitGroundOrExpire();
             }
+        }
+        public void OnHitGroundOrExpire()
+        {
+            pool.Release(this);
+            EffectPool.GetAndAutoReturnToPool(transform, 0.3f);
         }
     }
 }
