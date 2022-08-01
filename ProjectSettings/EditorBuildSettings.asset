@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Map1-1.unity
     guid: 4afd0321f0e78564598378216c9d645a
+  - enabled: 1
+    path: Assets/Scenes/ForestBiome.unity
+    guid: 3cd538658cce09f4090420da3608a38a
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 786eff9606df27b4794bda3ca74371f4, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 62b862475bf038f48b3dd1a105025e39, type: 2}

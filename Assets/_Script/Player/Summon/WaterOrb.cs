@@ -5,40 +5,41 @@ using Script.Core.Input;
 
 namespace Script.Player
 {
-    public class WaterOrb : MonoBehaviour,ISummon
+    public class WaterOrb : Summon
     {
         [SerializeField] private InputReader inputReader;
         [SerializeField] private float attackSpeed;
         [SerializeField] private bool stopAction;
-        [SerializeField] private float lifeTime;
+        [SerializeField] private Animator animator;
 
+        private void Awake()
+        {
+            animator = GetComponent<Animator>();
+        }
         private void OnEnable()
         {
-            inputReader.AttackEvent += OnPlayerAttack;
+            inputReader.SkillActionEvent += OnPlayerSwitchElement;
         }
         private void OnDisable()
         {
-            inputReader.AttackEvent -= OnPlayerAttack;
+            inputReader.SkillActionEvent -= OnPlayerSwitchElement;
         }
-       
-        public void Summon()
+        
+        public override void OnSummon(Transform transform)
         {
+            this.transform.position = transform.position;
             stopAction = false;
-            gameObject.SetActive(false);
-            TimerSystem.Create(RemoveSummon,lifeTime);
+            gameObject.SetActive(true);
         }
 
-        public void RemoveSummon()
+        public override void OnReturnSummon(Transform transform)
         {
             gameObject.SetActive(false);
         }
 
-        private void OnPlayerAttack(bool attackPress)
+        private void OnPlayerSwitchElement()
         {
-            if (attackPress)
-            {
-                print("morp");
-            }
+            print("morp");
         }
         private void OnTriggerStay2D(Collider2D collision)
         {
@@ -47,17 +48,14 @@ namespace Script.Player
                 Attack(target);
             }
         }
-
         private void Attack(IDamageable target)
         {
             if (stopAction) return;
-            
-            print("Attack " + target.GetType().Name);
+            animator.Play("Attack");
             DamageInfo info = new(1, transform.position);
             target.TakeDamage(info);
             stopAction = true;
             TimerSystem.Create(() => { stopAction = false; }, attackSpeed);
-            
         }
     }
 }

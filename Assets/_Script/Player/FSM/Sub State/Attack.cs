@@ -16,13 +16,20 @@ namespace Script.Player
 
         public override void CheckSwitchState()
         {
-            if (isEndAttack)
-            {
-                SwitchState(_factory.Idle());
-            }
-            else if (Ctx.IsDash && Ctx.DashStates == DashState.Ready)
+
+            if (Ctx.IsDash && Ctx.DashStates == DashState.Ready)
             {
                 SwitchState(_factory.Dash());
+            }
+            if (!isEndAttack) return;
+
+            if (Ctx.IsMove)
+            {
+                SwitchState(_factory.Move());
+            }
+            else
+            {
+                SwitchState(_factory.Idle());
             }
         }
 
@@ -32,8 +39,12 @@ namespace Script.Player
             // first attack
             DiractionAttack();
             TimerSystem.Create(FinishAttack, Ctx.Stats.AttackSpeed, "Attack");
-            Ctx.NewVelocity.Set(0, 0);
-            Ctx.rb.velocity = Ctx.NewVelocity;
+            
+            if (Ctx.IsGround)
+            {
+                Ctx.NewVelocity.Set(0, 0);
+                Ctx.rb.velocity = Ctx.NewVelocity;
+            }
         }
 
         public override void OnStateExit()
@@ -59,7 +70,16 @@ namespace Script.Player
         private void CheckAttackNext()
         {
             if (!isComboableAttack) return;
-            if(Ctx.Stats.MaxAttackCombo < attackCombo)
+            if (!isCurrentAnimationFinish) return;
+
+            if (Ctx.IsMove) 
+            { 
+                isEndAttack = true;
+                Ctx.Combat.SetAttackCoolDown();
+                return;
+            }
+
+            if (Ctx.Stats.MaxAttackCombo < attackCombo)
             {
                 isEndAttack = true;
                 Ctx.Combat.SetAttackCoolDown();
@@ -68,7 +88,7 @@ namespace Script.Player
             if (!isEndAttack && Ctx.InputReader.IsAttackBuffering && isCurrentAnimationFinish)
             {
                 DoAttack();
-                SetTimeout();
+                SetNextAttackWaitTimeout();
             }
         }
         private void DoAttack()
@@ -103,12 +123,12 @@ namespace Script.Player
             isCurrentAnimationFinish = true;
 
             if (isComboableAttack)
-                SetTimeout();
+                SetNextAttackWaitTimeout();
             else
                 isEndAttack = true;
             
         }
-        private void SetTimeout()
+        private void SetNextAttackWaitTimeout()
         {
             TimerSystem.Create(() => { isEndAttack = true; }, attackTimeout, "AttackTimeout"); // addtime
         }

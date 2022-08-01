@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e8ab3565b2996a94e8c48811411178e1
+guid: b6a3dcd04326e9345849aaadad678c2d
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -102,7 +102,7 @@ ScriptedImporter:
       y: 436
       width: 345
       height: 371
-    spriteID: 127b085de0b4b65439b7e248a645d623
+    spriteID: 44392c63c18414b41aeb32590b75d167
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -123,7 +123,7 @@ ScriptedImporter:
       y: 4
       width: 338
       height: 384
-    spriteID: f299c28c5b0f6ee4b9f9792f295f1c06
+    spriteID: 3f52be282a541dd40a272668147187c1
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -144,7 +144,7 @@ ScriptedImporter:
       y: 4
       width: 490
       height: 424
-    spriteID: 08c061ebd7c9c2947bbbb921bc170f04
+    spriteID: a29e75637f625b24588233d14aca4164
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -167,46 +167,13 @@ ScriptedImporter:
     dimension: {x: 0, y: 0}
     characterGroups: []
     boneReadOnly: 0
-  platformSettings:
-  - name: DefaultTexturePlatform
-    overridden: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: Standalone
-    overridden: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: Server
-    overridden: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
+  platformSettings: []
   mosaicLayers: 1
   characterMode: 1
   documentPivot: {x: 0, y: 0}
   documentAlignment: 7
   importHiddenLayers: 0
-  layerMappingOption: 0
+  layerMappingOption: 2
   generatePhysicsShape: 0
   paperDollMode: 0
   keepDupilcateSpriteName: 1
@@ -221,7 +188,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: -1
-    spriteID: d9c267a7f677fb14c969a14628e87985
+    spriteID: 00000000000000000000000000000000
     layerID: 0
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
@@ -231,8 +198,8 @@ ScriptedImporter:
     spriteName: Slash2_3
     isGroup: 0
     parentIndex: 0
-    spriteID: 127b085de0b4b65439b7e248a645d623
-    layerID: 0
+    spriteID: 44392c63c18414b41aeb32590b75d167
+    layerID: 1219494215
     mosaicPosition: {x: 4, y: 436}
     flatten: 0
     isImported: 1
@@ -241,8 +208,8 @@ ScriptedImporter:
     spriteName: Slash2_2
     isGroup: 0
     parentIndex: 0
-    spriteID: f299c28c5b0f6ee4b9f9792f295f1c06
-    layerID: 0
+    spriteID: 3f52be282a541dd40a272668147187c1
+    layerID: -346589726
     mosaicPosition: {x: 502, y: 4}
     flatten: 0
     isImported: 1
@@ -251,8 +218,8 @@ ScriptedImporter:
     spriteName: Slash2
     isGroup: 0
     parentIndex: 0
-    spriteID: 08c061ebd7c9c2947bbbb921bc170f04
-    layerID: 0
+    spriteID: a29e75637f625b24588233d14aca4164
+    layerID: -127006617
     mosaicPosition: {x: 4, y: 4}
     flatten: 0
     isImported: 1
@@ -261,8 +228,8 @@ ScriptedImporter:
     spriteName: 
     isGroup: 0
     parentIndex: -1
-    spriteID: 3f5dd130ec6ba3c4cada301f835ef2c5
-    layerID: 0
+    spriteID: 00000000000000000000000000000000
+    layerID: -106479085
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
     isImported: 0
@@ -271,8 +238,8 @@ ScriptedImporter:
     spriteName: 
     isGroup: 0
     parentIndex: -1
-    spriteID: cfe2cf4c6264452499fa4ae320c78b5e
-    layerID: 0
+    spriteID: 00000000000000000000000000000000
+    layerID: -7500619
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
     isImported: 0

@@ -58,7 +58,7 @@ MonoBehaviour:
   LowJumpMultiplier: 5
   IframeTime: 0.8
   KnockBackTime: 0.5
-  AttackEndComboTime: 0.9
+  AttackEndComboTime: 0.35
   MaxAttackCombo: 4
   CastOrb: 1
   OrbDecayTime: 1

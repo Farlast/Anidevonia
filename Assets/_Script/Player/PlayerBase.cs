@@ -17,7 +17,7 @@ namespace Script.Player
         [SerializeField] internal PlayerAnimation AnimationPlayer;
         [SerializeField] internal Combat Combat;
         [SerializeField] internal PlayerHealth HealthSystem;
-        
+
         private StateFactory factory;
         private float saveGravity;
         private bool wasAction;
@@ -26,13 +26,13 @@ namespace Script.Player
         internal State CurrentState;
         internal Vector2 NewVelocity;
 
-        [field:SerializeField] internal Vector2 MoveInputVector { get; private set; }
+        [field: SerializeField] internal Vector2 MoveInputVector { get; private set; }
         internal bool IsMove { get; private set; }
         internal bool IsGround { get; private set; }
         internal bool IsWallAtFront { get; private set; }
         internal bool IsJumpPress { get; private set; }
         internal bool IsDash { get; private set; }
-        internal int JumpCount { get;private set; }
+        internal int JumpCount { get; private set; }
 
         [Space]
         [Header("[debug]")]
@@ -52,7 +52,7 @@ namespace Script.Player
         [SerializeField] private LayerMask iframeLayer;
         private bool GroundCheck() => IsGround = Physics2D.OverlapBox(feetPos.position, new Vector2(checkRadiusFeetX, checkRadiusFeetY), 0f, groundLayer);
         private bool WallCheck() => IsWallAtFront = Physics2D.Raycast(transform.position, new Vector2(InputReader.LatesDirection.x, 0), eyeRadiusCheck, groundLayer);
-        
+
         public DashState DashStates;
 
         void Start()
@@ -120,7 +120,7 @@ namespace Script.Player
         }
         private void OnDash(bool action)
         {
-            if(DashStates == DashState.Ready)
+            if (DashStates == DashState.Ready)
             {
                 IsDash = action;
             }
@@ -141,7 +141,7 @@ namespace Script.Player
             rb.velocity = NewVelocity;
             JumpCount += 1;
             wasAction = true;
-            TimerSystem.Create(() => { wasAction = false; },0.35f, "jump");
+            TimerSystem.Create(() => { wasAction = false; }, 0.35f, "jump");
         }
         public bool IsCanDoubleJump()
         {

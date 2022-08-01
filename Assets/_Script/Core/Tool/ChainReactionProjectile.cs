@@ -4,8 +4,7 @@ namespace Script.Core
 {
     public class ChainReactionProjectile : Projectile
     {
-        [SerializeField] GameObject chainObject;
-        [Header("Chain effect")]
+        [Header("Chain effect event")]
         [SerializeField] TransformEventChannel actionEvent;
 
         private bool hasActive;

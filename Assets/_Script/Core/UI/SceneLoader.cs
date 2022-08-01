@@ -11,9 +11,10 @@ namespace Script.Core.UI
         }
         void LoadPlayableScene()
         {
-            SceneManager.LoadSceneAsync("Map1-1", LoadSceneMode.Additive).completed += Setup;
+            SceneManager.LoadSceneAsync("ForestBiome", LoadSceneMode.Additive);
+            SceneManager.LoadSceneAsync("Map1-1", LoadSceneMode.Additive).completed += SetupPlayer;
         }
-        void Setup(AsyncOperation operation)
+        void SetupPlayer(AsyncOperation operation)
         {
             SceneManager.LoadSceneAsync("Player", LoadSceneMode.Additive);
             SceneManager.LoadSceneAsync("UI", LoadSceneMode.Additive);

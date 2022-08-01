@@ -7,6 +7,7 @@ namespace Script.Player
     {
         [SerializeField] Animator animator;
         [SerializeField] GameObject AttackEffect;
+        [SerializeField] Transform effectPosition;
 
         internal readonly int Idle = Animator.StringToHash("Idle");
         internal readonly int Run = Animator.StringToHash("Run");
@@ -16,7 +17,6 @@ namespace Script.Player
         internal readonly int Attack = Animator.StringToHash("Attack");
         internal readonly int AttackCombo2 = Animator.StringToHash("AttackCombo2");
         internal readonly int AttackCombo3 = Animator.StringToHash("AttackCombo3");
-        internal readonly int AttackCombo4 = Animator.StringToHash("AttackCombo4");
 
         internal readonly int AttackUp = Animator.StringToHash("AttackUp");
         internal readonly int AttackDown = Animator.StringToHash("AttackDown");
@@ -29,7 +29,6 @@ namespace Script.Player
         public void KnockBackAnimation()
         {
             PlayAnimation(KnockBack, 0.15f);
-            lastAnimation = KnockBack;
         }
         public void AirAnimation(float velocityY)
         { 
@@ -57,9 +56,6 @@ namespace Script.Player
                     break;
                 case 3:
                     PlayAnimation(AttackCombo3, 0.1f);
-                    break;
-                case 4:
-                    PlayAnimation(AttackCombo4, 0.1f);
                     break;
             }
             
@@ -101,6 +97,7 @@ namespace Script.Player
         {
             if(IsNotSameAnimation(hash))
             animator.CrossFade(hash,transitionTime, 0);
+            lastAnimation = hash;
         }
         private bool IsNotSameAnimation(int hash)
         {

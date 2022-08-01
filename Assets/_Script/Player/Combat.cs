@@ -14,9 +14,9 @@ namespace Script.Player
         [SerializeField] PlayerStats stats;
         [SerializeField] LayerMask attackLayer;
         [Header("Projectile")]
-        [SerializeField] GameObject projectile;
         [SerializeField] ProjectilePool pool;
-
+        [SerializeField] float fireDelay;
+        bool canFire;
         internal bool IsAttackCooldown { get; private set; }
         internal bool IsAttackPress { get; private set; }
         internal bool IsHitTarget { get; private set; }
@@ -25,6 +25,7 @@ namespace Script.Player
         
         void Start()
         {
+            canFire = true;
             InputReader.AttackEvent += OnAttack;
             InputReader.CastEvent += CastOrb;
             InputReader.SkillActionEvent += SkillAction;
@@ -45,8 +46,13 @@ namespace Script.Player
         }
         void FireProjectile()
         {
-            var proj = pool.GetAndSetPosition(attackPos);
-            proj.SetUp(attackPos.position, InputReader.LatesDirection, 0.35f, pool);
+            if (canFire)
+            {
+                var proj = pool.GetAndSetPosition(attackPos);
+                proj.SetUp(attackPos.position, InputReader.LatesDirection, 0.35f, pool);
+                canFire = false;
+                TimerSystem.Create(() => { canFire = true; },fireDelay);
+            }
         }
        
         void SkillAction()
