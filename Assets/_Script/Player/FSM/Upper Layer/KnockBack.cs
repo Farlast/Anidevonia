@@ -18,10 +18,6 @@ namespace Script.Player
         {
             if (!finish) return;
 
-            /*if (Ctx.HealthSystem.IsDead)
-            {
-                SwitchState(_factory.Die());
-            }*/
             if (Ctx.IsGround)
             {
                 SwitchState(_factory.Ground());

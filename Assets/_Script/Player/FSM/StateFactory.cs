@@ -14,7 +14,8 @@ namespace Script.Player
             Attack,
             SkillAction,
             Dash,
-            KnockBack
+            KnockBack,
+            AirAttack
         }
 
         public StateFactory(PlayerBase context)
@@ -29,6 +30,7 @@ namespace Script.Player
             _stateDictionary.Add(States.SkillAction, new SkillAction(_context, this));
             _stateDictionary.Add(States.Dash, new Dash(_context, this));
             _stateDictionary.Add(States.KnockBack, new KnockBack(_context, this));
+            _stateDictionary.Add(States.AirAttack, new AirAttack(_context, this));
         }
 
         private static readonly Dictionary<States, State> _stateDictionary = new Dictionary<States, State>();
@@ -41,7 +43,7 @@ namespace Script.Player
         public State SkillAction() => GetState(States.SkillAction);
         public State Dash() => GetState(States.Dash);
         public State KnockBack() => GetState(States.KnockBack);
-
+        public State AirAttack() => GetState(States.AirAttack);
         private State GetState(States stateName)
         {
             if (_stateDictionary.TryGetValue(stateName, out var state)) return state;

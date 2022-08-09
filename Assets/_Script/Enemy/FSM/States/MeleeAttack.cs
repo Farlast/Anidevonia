@@ -22,8 +22,9 @@ namespace Script.Enemy
         {
             controller.MoveVector.Set(0, 0);
             animationFinish = false;
-            controller.Animator.AttackAnimation();
-            TimerSystem.Create(() => { animationFinish = true; }, 0.5f);
+            controller.Animator.PreAttackAnimation();
+            
+            TimerSystem.Create(() => { animationFinish = true; }, 1f);
         }
 
         public override void ExitState()

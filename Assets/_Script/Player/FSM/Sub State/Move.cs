@@ -11,7 +11,7 @@ namespace Script.Player
 
         public override void CheckSwitchState()
         {
-            if (Ctx.Combat.IsAttackPress && !Ctx.Combat.IsAttackCooldown)
+            if (Ctx.IsCanGroundAttack())
             {
                 SwitchState(_factory.Attack());
             }

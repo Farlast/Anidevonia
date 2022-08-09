@@ -149,6 +149,7 @@ namespace Script.Player
         }
         public void Move()
         {
+            if (IsWallAtFront) return;
             if (isOnSlop && IsGround)
             {
                 NewVelocity.Set((MoveInputVector.x * Stats.Movespeed * slopeNormal.x), rb.velocity.y * slopeNormal.y * Stats.Movespeed);
@@ -174,6 +175,10 @@ namespace Script.Player
         public void ChangeMat()
         {
 
+        }
+        public bool IsCanGroundAttack()
+        {
+            return IsGround && Combat.IsAttackPress && !Combat.IsAttackCooldown;
         }
         #endregion
         #region Slope

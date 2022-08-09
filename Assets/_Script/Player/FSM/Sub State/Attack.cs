@@ -12,7 +12,7 @@ namespace Script.Player
         bool isCurrentAnimationFinish;
         bool isEndAttack;
         int attackCombo;
-        float attackTimeout = 0.5f;
+        float attackTimeout = 0.35f;
 
         public override void CheckSwitchState()
         {
@@ -40,11 +40,8 @@ namespace Script.Player
             DiractionAttack();
             TimerSystem.Create(FinishAttack, Ctx.Stats.AttackSpeed, "Attack");
             
-            if (Ctx.IsGround)
-            {
-                Ctx.NewVelocity.Set(0, 0);
-                Ctx.rb.velocity = Ctx.NewVelocity;
-            }
+            Ctx.NewVelocity.Set(0, 0);
+            Ctx.rb.velocity = Ctx.NewVelocity;
         }
 
         public override void OnStateExit()
@@ -72,20 +69,20 @@ namespace Script.Player
             if (!isComboableAttack) return;
             if (!isCurrentAnimationFinish) return;
 
-            if (Ctx.IsMove) 
+            if (Ctx.IsMove && !Ctx.InputReader.IsAttackBuffering) //move cancle
             { 
                 isEndAttack = true;
                 Ctx.Combat.SetAttackCoolDown();
                 return;
             }
 
-            if (Ctx.Stats.MaxAttackCombo < attackCombo)
+            if (Ctx.Stats.MaxAttackCombo < attackCombo) // is max combo
             {
                 isEndAttack = true;
                 Ctx.Combat.SetAttackCoolDown();
                 return;
             }
-            if (!isEndAttack && Ctx.InputReader.IsAttackBuffering && isCurrentAnimationFinish)
+            if (!isEndAttack && Ctx.InputReader.IsAttackBuffering && isCurrentAnimationFinish) //can attack action
             {
                 DoAttack();
                 SetNextAttackWaitTimeout();
@@ -93,7 +90,6 @@ namespace Script.Player
         }
         private void DoAttack()
         {
-           
             attackCombo++;
             Ctx.InputReader.ResetAttackBuffer();
 
@@ -140,6 +136,7 @@ namespace Script.Player
             attackCombo = 0;
             
             Ctx.AnimationPlayer.AttackEffectOff();
+            Ctx.InputReader.ResetAttackBuffer();
         }
     }
 }

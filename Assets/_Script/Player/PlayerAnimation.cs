@@ -7,7 +7,7 @@ namespace Script.Player
     {
         [SerializeField] Animator animator;
         [SerializeField] GameObject AttackEffect;
-        [SerializeField] Transform effectPosition;
+        [SerializeField] GameObject AttackEffect_2;
 
         internal readonly int Idle = Animator.StringToHash("Idle");
         internal readonly int Run = Animator.StringToHash("Run");
@@ -46,6 +46,7 @@ namespace Script.Player
         public void AttackAnimation()
         {
             PlayAnimation(Attack,0.1f);
+            AttackEffectOn();
         }
         public void AttackComboAnimation(int combo)
         {
@@ -53,9 +54,11 @@ namespace Script.Player
             {
                 case 2:
                     PlayAnimation(AttackCombo2, 0.1f);
+                    AttackEffect2();
                     break;
                 case 3:
                     PlayAnimation(AttackCombo3, 0.1f);
+                    AttackEffectOn();
                     break;
             }
             
@@ -85,14 +88,23 @@ namespace Script.Player
             PlayAnimation(BackDash, 0.2f);
         }
         //--------------------
+        public void AttackEffect2()
+        {
+            AttackEffect_2.SetActive(true);
+            TimerSystem.Create(() => { AttackEffect_2.SetActive(false); }, 0.5f);
+        }
+
+        //--------------------
         public void AttackEffectOn()
         {
             AttackEffect.SetActive(true);
+            TimerSystem.Create(() => { AttackEffectOff(); }, 0.5f);
         }
         public void AttackEffectOff()
         {
             AttackEffect.SetActive(false);
         }
+        //---------------------
         private void PlayAnimation(int hash,float transitionTime)
         {
             if(IsNotSameAnimation(hash))

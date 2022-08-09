@@ -11,7 +11,7 @@ namespace Script.Player
 
         public override void CheckSwitchState()
         {
-            if (Ctx.Combat.IsAttackPress && !Ctx.Combat.IsAttackCooldown)
+            if (Ctx.IsCanGroundAttack())
             {
                 SwitchState(_factory.Attack());
             }
@@ -25,12 +25,11 @@ namespace Script.Player
         {
             if (Ctx.IsGround) Ctx.AnimationPlayer.IdleAnimation();
             else Ctx.AnimationPlayer.AirAnimation(Ctx.rb.velocity.y);
-
         }
 
         public override void OnStateExit()
         {
-            Ctx.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
         }
 
         public override void OnStateRun()
@@ -40,18 +39,11 @@ namespace Script.Player
 
         public override void InitializeSubState()
         {
+
         }
 
         public override void OnStateFixedUpdate()
         {
-            if(Ctx.IsGround && !Ctx.InputReader.IsJumpBuffering)
-            {
-                Ctx.rb.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
-            }
-            else
-            {
-                Ctx.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            }
             Ctx.NewVelocity.Set(0f, Ctx.rb.velocity.y);
             Ctx.rb.velocity = Ctx.NewVelocity;
         }

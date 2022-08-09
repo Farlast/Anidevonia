@@ -15,6 +15,10 @@ namespace Script.Enemy
         [SerializeField] private GameObject attackBox;
         [SerializeField] private StateController stateController;
 
+        [SerializeField] private Transform attackPoint;
+        [SerializeField] private Vector2 attackRange;
+        [SerializeField] private LayerMask attackLayer;
+
         private Material currentMaterial;
         private float flashValue;
         private float maxFlashValue;
@@ -80,5 +84,35 @@ namespace Script.Enemy
         {
             Destroy(gameObject);
         }
+
+        public void MeleeAttack()
+        {
+            Collider2D[] TargetToDamage = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(attackRange.x, attackRange.y), 0, attackLayer);
+
+            if (TargetToDamage == null) return;
+
+            for (int i = 0; i < TargetToDamage.Length; i++)
+            {
+                IDamageable damageable = TargetToDamage[i].GetComponent<IDamageable>();
+
+                if (damageable == null) { continue; }
+                else
+                {
+                    DamageInfo info = new DamageInfo(Stats.AttackDamage, transform.position);
+                    info.KnockBack = Stats.AttackKnockBack;
+                    damageable.TakeDamage(info);
+                }
+            }
+        }
+        #region Gizmos
+        void OnDrawGizmos()
+        {
+            if (attackPoint != null)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawCube(attackPoint.position, new Vector2(attackRange.x, attackRange.y));
+            }
+        }
+        #endregion
     }
 }

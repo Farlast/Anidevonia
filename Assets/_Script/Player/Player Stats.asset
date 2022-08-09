@@ -27,7 +27,7 @@ MonoBehaviour:
   HasDoubleJump: 0
   HasDash: 1
   HasIframeDash: 0
-  DashSpeed: 20
+  DashSpeed: 30
   MaxDashTime: 0.3
   DashCooldown: 0.5
   DashVelocity:
@@ -58,7 +58,7 @@ MonoBehaviour:
   LowJumpMultiplier: 5
   IframeTime: 0.8
   KnockBackTime: 0.5
-  AttackEndComboTime: 0.35
-  MaxAttackCombo: 4
+  AttackEndComboTime: 0.2
+  MaxAttackCombo: 3
   CastOrb: 1
   OrbDecayTime: 1

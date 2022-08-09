@@ -15,6 +15,7 @@ namespace Script.Enemy
         private readonly int Idle = Animator.StringToHash("Idle");
         private readonly int Run = Animator.StringToHash("Run");
         private readonly int JumpUp = Animator.StringToHash("JumpUp");
+        private readonly int PreAttack = Animator.StringToHash("PreAttack");
         private readonly int Attack = Animator.StringToHash("Attack");
         private readonly int KnockBack = Animator.StringToHash("KnockBack");
 
@@ -31,6 +32,10 @@ namespace Script.Enemy
         public void AttackAnimation()
         {
             PlayAnimation(Attack, 0.1f);
+        }
+        public void PreAttackAnimation()
+        {
+            PlayAnimation(PreAttack, 0.1f);
         }
 
         private void PlayAnimation(int hash, float transitionTime)
