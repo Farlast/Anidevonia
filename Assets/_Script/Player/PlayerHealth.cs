@@ -1,20 +1,23 @@
 using Script.Core;
 using UnityEngine;
 using Script.Core.SaveSystem;
+using UnityEngine.Events;
 
 namespace Script.Player
 {
     public class PlayerHealth : MonoBehaviour, ISaveDataPersistence,IDamageable
     {
+        public event UnityAction<TakeDamageInfo> TakeDamageEvent;
+        public VoidEventChannel DeadEvent;
+
         [SerializeField] float health;
         [SerializeField] float mana;
         [SerializeField] PlayerStats stats;
         [SerializeField] HealthEvent healthSystem;
-        private DamageInfo backupInfo;
 
         internal bool IsIframe { get; private set; }
-        internal bool IsTakeDamage { get; private set; }
         internal bool IsDead { get; private set; }
+
         private void Start()
         {
             SaveLoadSystem.OnLoad += Load;
@@ -40,19 +43,32 @@ namespace Script.Player
 
         public void Save(SaveData saveData)
         {
-            saveData.Player = new();
-            saveData.Player.HP = health;
-            saveData.Player.MaxHP = stats.MaxHP;
+            saveData.Player = new()
+            {
+                HP = health,
+                MaxHP = stats.MaxHP
+            };
         }
 
         public void TakeDamage(DamageInfo damage)
         {
             if (IsIframe) return;
-            
-            health = healthSystem.Damage(damage, health,stats.MaxHP);
-            backupInfo = damage;
-            if (health <= 0) IsDead = true;
-            
+
+            health = healthSystem.Damage(damage, health, stats.MaxHP);
+
+            if (health <= 0)
+            {
+                IsDead = true;
+                DeadEvent?.RiseEvent();
+            }
+
+            TakeDamageInfo takeDamageInfo = new()
+            {
+                DamageInfo = damage,
+                IsDead = IsDead
+            };
+
+            TakeDamageEvent?.Invoke(takeDamageInfo);
             TakeDamageEffect();
             Iframe();
         }
@@ -63,14 +79,8 @@ namespace Script.Player
         }
         private void TakeDamageEffect()
         {
-            IsTakeDamage = true;
-            TimerSystem.Create(() => { IsTakeDamage = false; },0.1f,"TakeDamege");
             var effect = EffectPool.GetEffect(transform);
             TimerSystem.Create(() => { EffectPool.ReturnEffect(effect); }, 0.3f, "TakeDamegeEffect");
-        }
-        public DamageInfo GetDamageInfo()
-        {
-            return backupInfo;
         }
     }
 }

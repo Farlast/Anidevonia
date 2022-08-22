@@ -7,12 +7,19 @@ namespace Script.Player
     {
         [SerializeField] AudioCueEvent effectEvent;
         [SerializeField] Core.Audio.AudioConfiguration effectConfig;
+        [SerializeField] AudioList runAudioList;
 
-        [SerializeField] AudioList audiolist;
+        [SerializeField] AudioCueEvent attackAudioEvent;
+        [SerializeField] Core.Audio.AudioConfiguration attackAudioConfig;
+        [SerializeField] AudioList attackAudioList;
 
         public void AudioRun()
         {
-            effectEvent.RiseEvent(audiolist.GetRandomAudio(), effectConfig, transform.position);
+            effectEvent.RiseEvent(runAudioList.GetRandomAudio(), effectConfig, transform.position);
+        }
+        public void AttackSound()
+        {
+            attackAudioEvent.RiseEvent(attackAudioList.GetRandomAudio(), attackAudioConfig, transform.position);
         }
     }
 }

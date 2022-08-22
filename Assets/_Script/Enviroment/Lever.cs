@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using Script.Core;
 
 namespace Script.Enemy
 {

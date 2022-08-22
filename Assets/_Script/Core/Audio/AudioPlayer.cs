@@ -8,13 +8,27 @@ namespace Script.Core.Audio
     {
         [SerializeField] AudioCueEvent BGMCueEvent = default;
         [SerializeField] AudioCueEvent VFXCueEvent = default;
+        [SerializeField] AudioCueEvent AttackVFXCueEvent = default;
         [SerializeField] AudioSource musicAudioSource;
         [SerializeField] AudioSource effectAudioSource;
+        [SerializeField] AudioSource attackEffectAudioSource;
+
+        #region event
         void Start()
         {
             BGMCueEvent.onEventRaised += OnMusicEvent;
             VFXCueEvent.onEventRaised += OnEffectEvent;
+            AttackVFXCueEvent.onEventRaised += OnAttackEffectEvent;
         }
+        private void OnDestroy()
+        {
+            BGMCueEvent.onEventRaised -= OnMusicEvent;
+            VFXCueEvent.onEventRaised -= OnEffectEvent;
+            AttackVFXCueEvent.onEventRaised -= OnAttackEffectEvent;
+        }
+        #endregion
+
+        #region Main
         private void OnMusicEvent(AudioClip clip,AudioConfiguration configuration,Vector3 pos)
         {
             SettingsAudio(clip, musicAudioSource, configuration);
@@ -23,8 +37,16 @@ namespace Script.Core.Audio
         private void OnEffectEvent(AudioClip clip, AudioConfiguration configuration, Vector3 pos)
         {
             SettingsAudio(clip, effectAudioSource, configuration);
-            musicAudioSource.PlayOneShot(clip);
+            effectAudioSource.PlayOneShot(clip);
         }
+        private void OnAttackEffectEvent(AudioClip clip, AudioConfiguration configuration, Vector3 pos)
+        {
+            SettingsAudio(clip, attackEffectAudioSource, configuration);
+            attackEffectAudioSource.PlayOneShot(clip);
+        }
+        #endregion
+
+        #region Setting
         void SettingsAudio(AudioClip clip, AudioSource source, AudioConfiguration configuration)
         {
             source.outputAudioMixerGroup = configuration.mixerGroupOutput;
@@ -46,5 +68,6 @@ namespace Script.Core.Audio
 
             source.priority = (int)configuration.priority;
         }
+        #endregion
     }
 }

@@ -1,26 +1,43 @@
 using UnityEngine;
+using System;
 
-public interface IDamageable
+namespace Script.Core
 {
-    void TakeDamage(DamageInfo info);
-}
-public class DamageInfo
-{
-    public float Damage { get; set; }
-    public Vector3 AttackerPosition { get; set; }
-    public float KnockBack { get; set; }
-
-    public DamageInfo(float damage, Vector3 attackerPosition)
+    public interface IDamageable
     {
-        Damage = damage;
-        AttackerPosition = attackerPosition;
+        void TakeDamage(DamageInfo info);
     }
-    public float GetDiraction(Vector3 currentPosition)
+    public enum KnockbackType
     {
-        return (currentPosition - AttackerPosition).normalized.x;
+        None,
+        Stunt,
+        Low,
+        Heavy
     }
-}
-public class TargetInfo
-{
 
+    [Serializable]
+    public class DamageInfo
+    {
+        public DamageInfo(float damage, Vector3 attackerPosition)
+        {
+            Damage = damage;
+            AttackerPosition = attackerPosition;
+        }
+
+        public float Damage { get; set; }
+        public Vector3 AttackerPosition { get; set; }
+        public KnockbackType KnockBack { get; set; }
+
+        public float GetDirectionFromTarget(Vector3 currentPosition)
+        {
+            return (currentPosition - AttackerPosition).normalized.x;
+        }
+    }
+
+    [Serializable]
+    public class TakeDamageInfo
+    {
+        public bool IsDead;
+        public DamageInfo DamageInfo;
+    }
 }

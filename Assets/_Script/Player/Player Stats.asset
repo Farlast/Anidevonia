@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1c102b6e3706b24483d2c9a914a4763, type: 3}
   m_Name: Player Stats
   m_EditorClassIdentifier: 
-  MaxHP: 10
-  MaxMp: 10
+  MaxHP: 5
+  MaxMp: 5
   Movespeed: 10
   JumpForce: 20
   MaxFallSpeed: -13
@@ -24,38 +24,9 @@ MonoBehaviour:
   TakeHitEffect: {fileID: 4836524762306965119, guid: 9af2f31f3e13b5749a338892079c6d71, type: 3}
   AttackKnockBack: 0
   StuntTime: 0.5
-  HasDoubleJump: 0
+  HasDoubleJump: 1
   HasDash: 1
-  HasIframeDash: 0
-  DashSpeed: 30
-  MaxDashTime: 0.3
-  DashCooldown: 0.5
-  DashVelocity:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.23333333
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: -2.5584903
-      outSlope: -2.5584903
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.10416669
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  FallMultiplier: 5
-  LowJumpMultiplier: 5
+  HasIframeDash: 1
   IframeTime: 0.8
   KnockBackTime: 0.5
   AttackEndComboTime: 0.2

@@ -98,8 +98,10 @@ namespace Script.Enemy
                 if (damageable == null) { continue; }
                 else
                 {
-                    DamageInfo info = new DamageInfo(Stats.AttackDamage, transform.position);
-                    info.KnockBack = Stats.AttackKnockBack;
+                    DamageInfo info = new(Stats.AttackDamage, transform.position)
+                    {
+                        KnockBack = KnockbackType.Low
+                    };
                     damageable.TakeDamage(info);
                 }
             }

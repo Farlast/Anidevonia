@@ -24,7 +24,7 @@ public class HitBox : MonoBehaviour
     private void Attack(IDamageable _traget,bool isPlayer)
     {
         DamageInfo info = new(stats.AttackDamage, transform.position);
-        info.KnockBack = stats.AttackKnockBack;
+        info.KnockBack = KnockbackType.Low;
 
         switch (tragets)
         {

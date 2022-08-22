@@ -15,8 +15,8 @@ MonoBehaviour:
   <IsAttackBuffering>k__BackingField: 0
   <IsJumpBuffering>k__BackingField: 0
   attackbufferTime: 0.2
-  attackBufferingTimeCounter: -0.0030163168
-  jumpbufferTime: 0.5
+  attackBufferingTimeCounter: -0.0023538936
+  jumpbufferTime: 0.2
   jumpBufferingTimeCounter: 0
   LatesDirection: {x: 1, y: 0}
   OldDirection: 1

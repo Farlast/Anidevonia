@@ -100,7 +100,7 @@ ScriptedImporter:
       x: 4
       y: 781
       width: 780
-      height: 371
+      height: 769
     spriteID: 96956393d68b3c04e8a96df101a42be7
     spriteBone: []
     spriteOutline: []
@@ -238,7 +238,7 @@ ScriptedImporter:
   documentPivot: {x: 0, y: 0}
   documentAlignment: 7
   importHiddenLayers: 0
-  layerMappingOption: 2
+  layerMappingOption: 0
   generatePhysicsShape: 0
   paperDollMode: 0
   keepDupilcateSpriteName: 0
@@ -263,7 +263,7 @@ ScriptedImporter:
     isGroup: 0
     parentIndex: -1
     spriteID: 4e2311fbf23de8048a36cb3d1a5a5eeb
-    layerID: -394524295
+    layerID: 0
     mosaicPosition: {x: 4, y: 4}
     flatten: 0
     isImported: 1

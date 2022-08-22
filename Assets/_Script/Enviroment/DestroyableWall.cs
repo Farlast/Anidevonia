@@ -1,4 +1,5 @@
 using UnityEngine;
+using Script.Core;
 
 namespace Script.Enemy
 {

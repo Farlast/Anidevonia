@@ -26,8 +26,9 @@ namespace Script.Core.Input
         [SerializeField] private float jumpbufferTime = 0.2f;
         [SerializeField] private float jumpBufferingTimeCounter;
 
-        public Vector2 LatesDirection = Vector2.right;
+        public Vector2 LatesDirection;
         public float OldDirection;
+
         public void OnMove(InputAction.CallbackContext callback)
         {
             if(callback.phase == InputActionPhase.Canceled)
@@ -138,7 +139,12 @@ namespace Script.Core.Input
             }
         }
         public bool IsDeviceMouseActive(InputAction.CallbackContext callback) => callback.control.device.name == "Mouse";
-        
+
+        private void Awake()
+        {
+            LatesDirection = Vector2.zero;
+        }
+
         #region Buffering
         // prees action before time
         // count until expire
