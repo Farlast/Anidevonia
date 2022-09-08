@@ -15,7 +15,7 @@ namespace Script.Player
             base.Enter();
             finishAnimation = false;
             timer = 0;
-            stateMachine.Player.PlayerAnimation.LightLandingAnimation();
+            StateMachine.Player.PlayerAnimation.LightLandingAnimation();
         }
         public override void Update()
         {
@@ -26,7 +26,7 @@ namespace Script.Player
         }
         private void AnimationTimer()
         {
-            if(timer >= ShareStateData.JumpData.LandingAnimationTime)
+            if(timer >= Data.JumpData.LandingAnimationTime)
             {
                 finishAnimation = true;
             }
@@ -34,18 +34,18 @@ namespace Script.Player
         }
         private void CheckSwicthState()
         {
-            if (stateMachine.Player.InputReader.IsJumpBuffering)
+            if (StateMachine.Player.InputReader.IsJumpBuffering)
             {
-                stateMachine.ChangeState(stateMachine.JumpingState);
-                stateMachine.Player.InputReader.ResetJumpBuffer();
+                StateMachine.ChangeState(StateMachine.JumpingState);
+                StateMachine.Player.InputReader.ResetJumpBuffer();
                 return;
             }
             if (IsMoveHorizontal())
             {
-                stateMachine.ChangeState(stateMachine.Runing);
+                StateMachine.ChangeState(StateMachine.Runing);
             }else if (finishAnimation)
             {
-                stateMachine.ChangeState(stateMachine.Idling);
+                StateMachine.ChangeState(StateMachine.Idling);
             }
         }
     }

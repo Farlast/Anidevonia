@@ -36,21 +36,21 @@ namespace Script.Player
         private void StartAttack()
         {
             animationFinish = false;
-            stateMachine.Player.PlayerAnimation.AttackAnimation();
-            TimerSystem.Create(() => { animationFinish = true; }, ShareStateData.AttackData.AirAttackHangTime);
+            StateMachine.Player.PlayerAnimation.AttackAnimation();
+            TimerSystem.Create(() => { animationFinish = true; }, Data.AttackData.AirAttackHangTime);
         }
         private void CheckNextState()
         {
             if (!animationFinish) return;
 
-            if (stateMachine.Player.InputReader.IsAttackBuffering)
+            if (StateMachine.Player.InputReader.IsAttackBuffering)
             {
-                stateMachine.ChangeState(stateMachine.Attack);
+                StateMachine.ChangeState(StateMachine.Attack);
                 return;
             }
 
-            ShareStateData.AttackData.SetEndComboCooldown();
-            stateMachine.ChangeState(stateMachine.FallingState);
+            Data.AttackData.SetEndComboCooldown();
+            StateMachine.ChangeState(StateMachine.FallingState);
             
         }
         protected override void AutoFallWhenNotground()

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aabbf45cdffc7a4180fe4740dff1077, type: 3}
+  m_Name: Water-Walk
+  m_EditorClassIdentifier: 
+  audios:
+  - {fileID: 8300000, guid: 62a95b27a60262844ac66b40e0adb443, type: 3}
+  - {fileID: 8300000, guid: fe10941c37660d4479c682aaf7a23875, type: 3}
+  - {fileID: 8300000, guid: cd06a0a0782f723478f9859ee1c006dc, type: 3}
+  - {fileID: 8300000, guid: 5948280ae2188b1458b93688f1714be5, type: 3}
+  - {fileID: 8300000, guid: 756321c11480bc94590918b29c66c740, type: 3}
+  - {fileID: 8300000, guid: 6d88d85389cdf87408c608ac9dfda05b, type: 3}

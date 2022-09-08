@@ -9,9 +9,9 @@ namespace Script.Player
         }
         protected override void OnAttack(bool press)
         {
-            if (press && !ShareStateData.AttackData.IsCooldown)
+            if (press && !Data.AttackData.IsCooldown)
             {
-                stateMachine.ChangeState(stateMachine.Attack);
+                StateMachine.ChangeState(StateMachine.Attack);
             }
         }
     }

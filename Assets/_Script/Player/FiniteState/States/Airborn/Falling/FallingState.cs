@@ -12,15 +12,16 @@ namespace Script.Player
         public override void Enter()
         {
             base.Enter();
-            stateMachine.Player.PlayerAnimation.AirAnimation(-1);
+            StateMachine.Player.PlayerAnimation.AirAnimation(-1);
         }
         public override void Update()
         {
             base.Update();
             FlipSprite();
-            if (stateMachine.Player.Data.JumpData.IsGround)
+
+            if (IsGround())
             {
-                stateMachine.ChangeState(stateMachine.LandingStateLight);
+                StateMachine.ChangeState(StateMachine.LandingStateLight);
             }
         }
         public override void FixUpdate()
@@ -35,12 +36,12 @@ namespace Script.Player
                 Move();
             }
            
-            NewVector.Set(stateMachine.Player.Rigidbody2D.velocity.x,
-                Mathf.Clamp(stateMachine.Player.Rigidbody2D.velocity.y,
-                ShareStateData.MovementData.MaxFallVelocity,
-                ShareStateData.MovementData.MaxVelocity));
+            NewVector.Set(StateMachine.Player.Rigidbody2D.velocity.x,
+                Mathf.Clamp(StateMachine.Player.Rigidbody2D.velocity.y,
+                Data.MovementData.MaxFallVelocity,
+                Data.MovementData.MaxVelocity));
 
-            stateMachine.Player.Rigidbody2D.velocity = NewVector;
+            StateMachine.Player.Rigidbody2D.velocity = NewVector;
         }
         #endregion
     }

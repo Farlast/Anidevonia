@@ -13,19 +13,19 @@ namespace Script.Player
         {
             base.Enter();
 
-            stateMachine.Player.PlayerAnimation.AirAnimation(1);
-            stateMachine.Player.InputReader.ResetJumpBuffer();
+            StateMachine.Player.PlayerAnimation.AirAnimation(1);
+            StateMachine.Player.InputReader.ResetJumpBuffer();
             ResetVelocity();
-            NewVector.Set(0, ShareStateData.JumpData.JumpForce);
-            stateMachine.Player.Rigidbody2D.AddForce(NewVector, ForceMode2D.Impulse);
+            NewVector.Set(0, Data.JumpData.JumpForce);
+            StateMachine.Player.Rigidbody2D.AddForce(NewVector, ForceMode2D.Impulse);
         }
         public override void Update()
         {
             base.Update();
             FlipSprite();
-            if (stateMachine.Player.Rigidbody2D.velocity.y < 0)
+            if (StateMachine.Player.Rigidbody2D.velocity.y < 0)
             {
-                stateMachine.ChangeState(stateMachine.FallingState);
+                StateMachine.ChangeState(StateMachine.FallingState);
                 return;
             }
         }

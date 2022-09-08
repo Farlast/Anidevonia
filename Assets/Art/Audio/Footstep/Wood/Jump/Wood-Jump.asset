@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aabbf45cdffc7a4180fe4740dff1077, type: 3}
+  m_Name: Wood-Jump
+  m_EditorClassIdentifier: 
+  audios:
+  - {fileID: 8300000, guid: eec6ce619ee5290499d82063eddb4398, type: 3}
+  - {fileID: 8300000, guid: 9adb8a9c810498145b34caa303290263, type: 3}

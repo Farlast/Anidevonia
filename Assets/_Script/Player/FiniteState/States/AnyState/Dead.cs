@@ -13,7 +13,7 @@ namespace Script.Player
         public override void Enter()
         {
             base.Enter();
-            stateMachine.Player.PlayerAnimation.DeadAnimation();
+            StateMachine.Player.PlayerAnimation.DeadAnimation();
             ResetVelocity();
             ZeroGravity();
         }

@@ -4,7 +4,8 @@ using Script.Core;
 [RequireComponent(typeof(Collider2D))]
 public class HitBox : MonoBehaviour
 {
-    [SerializeField] Stats stats;
+    [SerializeField] float contactDamage;
+    [SerializeField] KnockbackType knockBack;
     [SerializeField] TragetType tragets;
     enum TragetType
     {
@@ -23,8 +24,10 @@ public class HitBox : MonoBehaviour
     }
     private void Attack(IDamageable _traget,bool isPlayer)
     {
-        DamageInfo info = new(stats.AttackDamage, transform.position);
-        info.KnockBack = KnockbackType.Low;
+        DamageInfo info = new(contactDamage, transform.position)
+        {
+            KnockBack = knockBack
+        };
 
         switch (tragets)
         {

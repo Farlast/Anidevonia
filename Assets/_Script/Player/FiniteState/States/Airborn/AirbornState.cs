@@ -9,14 +9,14 @@ namespace Script.Player
         }
         protected void FallingStraight()
         {
-            Vector2 downVector = new( 0, stateMachine.Player.Rigidbody2D.velocity.y);
-            stateMachine.Player.Rigidbody2D.velocity = downVector;
+            Vector2 downVector = new( 0, StateMachine.Player.Rigidbody2D.velocity.y);
+            StateMachine.Player.Rigidbody2D.velocity = downVector;
         }
         protected override void OnAttack(bool press)
         {
-            if (press && !ShareStateData.AttackData.IsCooldown)
+            if (press && !Data.AttackData.IsCooldown)
             {
-                stateMachine.ChangeState(stateMachine.AirAttack);
+                StateMachine.ChangeState(StateMachine.AirAttack);
             }
         }
        protected virtual void HangOnAir()

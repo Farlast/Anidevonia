@@ -5,21 +5,21 @@ namespace Script.Player
 {
     public class MovementStateBase : IState
     {
-        protected PlayerStateMachine stateMachine;
-        protected StateData ShareStateData;
+        protected PlayerStateMachine StateMachine;
+        protected StateData Data;
         protected Vector2 NewVector;
         private Vector2 currentHorizontalVelovity;
         public MovementStateBase(PlayerStateMachine stateMachine)
         {
-            this.stateMachine = stateMachine;
-            ShareStateData = stateMachine.Player.Data;
+            StateMachine = stateMachine;
+            Data = stateMachine.Player.Data;
         }
 
         #region IState
         public virtual void Enter()
         {
             AddInputCallback();
-            ShareStateData.CurrentState = GetType().Name;
+            Data.CurrentState = GetType().Name;
         }
 
         public virtual void Exit()
@@ -33,7 +33,7 @@ namespace Script.Player
 
         public virtual void FixUpdate()
         {
-            ShareStateData.Velocity = stateMachine.Player.Rigidbody2D.velocity;
+            Data.Velocity = StateMachine.Player.Rigidbody2D.velocity;
         }
 
         public virtual void HandleInput()
@@ -61,19 +61,23 @@ namespace Script.Player
        
         protected void Move()
         {
-            if (ShareStateData.MovementData.MoveInput.x == 0 || ShareStateData.MovementData.SpeedMultiply == 0) return;
+            if (Data.MovementData.MoveInput.x == 0 || Data.MovementData.SpeedMultiply == 0) return;
 
-            NewVector.Set(ShareStateData.MovementData.MoveInput.x, 0);
-            stateMachine.Player.Rigidbody2D.AddForce(NewVector * CalculateMoveSpeed() - GetCurrentHorizontalVelovity(), ForceMode2D.Impulse);
+            NewVector.Set(Data.MovementData.MoveInput.x, 0);
+            StateMachine.Player.Rigidbody2D.AddForce(NewVector * CalculateMoveSpeed() - GetCurrentHorizontalVelovity(), ForceMode2D.Impulse);
         }
         #endregion
 
         #region Reuseable
+        protected bool IsGround()
+        {
+            return StateMachine.Player.GroundCheck.IsGround;
+        }
         protected virtual void AutoFallWhenNotground()
         {
-            if (!ShareStateData.JumpData.IsGround)
+            if (!IsGround())
             {
-                stateMachine.ChangeState(stateMachine.FallingState);
+                StateMachine.ChangeState(StateMachine.FallingState);
                 return;
             }
         }
@@ -81,56 +85,56 @@ namespace Script.Player
         {
             Vector3 rotation = GetMoveDiraction().x > 0 ? Vector3.zero : new Vector3(0, 180, 0);
 
-            if (stateMachine.Player.transform.eulerAngles == rotation) return;
-            stateMachine.Player.transform.eulerAngles = rotation;
+            if (StateMachine.Player.transform.eulerAngles == rotation) return;
+            StateMachine.Player.transform.eulerAngles = rotation;
         }
         protected Vector2 GetCurrentHorizontalVelovity()
         {
-            currentHorizontalVelovity.Set(stateMachine.Player.Rigidbody2D.velocity.x,0f);
+            currentHorizontalVelovity.Set(StateMachine.Player.Rigidbody2D.velocity.x,0f);
             return currentHorizontalVelovity;
         }
         protected Vector2 GetMoveInput()
         {
-            return ShareStateData.MovementData.MoveInput;
+            return Data.MovementData.MoveInput;
         }
         protected bool IsMoveHorizontal()
         {
-            return ShareStateData.MovementData.MoveInput.x != 0;
+            return Data.MovementData.MoveInput.x != 0;
         }
         protected float CalculateMoveSpeed()
         {
-            return ShareStateData.MovementData.MoveSpeed * ShareStateData.MovementData.SpeedMultiply;
+            return Data.MovementData.MoveSpeed * Data.MovementData.SpeedMultiply;
         }
         protected void ResetVelocity()
         {
-            stateMachine.Player.Rigidbody2D.velocity = Vector2.zero;
+            StateMachine.Player.Rigidbody2D.velocity = Vector2.zero;
         }
         protected  Vector2 GetMoveDiraction()
         {
-            return stateMachine.Player.InputReader.LatesDirection;
+            return StateMachine.Player.InputReader.LatesDirection;
         }
         protected void DecelerateMovement(Vector2 MoveDirection)
         {
             if (IsStopMoving()) return;
-            if (stateMachine.Player.Rigidbody2D.velocity.x > 0)
+            if (StateMachine.Player.Rigidbody2D.velocity.x > 0)
             {
-                NewVector.Set(stateMachine.Player.Rigidbody2D.velocity.x - ShareStateData.MovementData.DecelerationSpeed, 0);
+                NewVector.Set(StateMachine.Player.Rigidbody2D.velocity.x - Data.MovementData.DecelerationSpeed, 0);
             }
             else
             {
-                NewVector.Set(stateMachine.Player.Rigidbody2D.velocity.x + ShareStateData.MovementData.DecelerationSpeed, 0);
+                NewVector.Set(StateMachine.Player.Rigidbody2D.velocity.x + Data.MovementData.DecelerationSpeed, 0);
             }
-            stateMachine.Player.Rigidbody2D.velocity = NewVector;
+            StateMachine.Player.Rigidbody2D.velocity = NewVector;
         }
         protected bool IsStopMoving()
         {
             if(GetMoveDiraction() == Vector2.left)
             {
-                return IsInRange(-ShareStateData.MovementData.MinMoveVelocity, 0, stateMachine.Player.Rigidbody2D.velocity.x);
+                return IsInRange(-Data.MovementData.MinMoveVelocity, 0, StateMachine.Player.Rigidbody2D.velocity.x);
             }
             else
             {
-                return IsInRange(0, ShareStateData.MovementData.MinMoveVelocity, stateMachine.Player.Rigidbody2D.velocity.x);
+                return IsInRange(0, Data.MovementData.MinMoveVelocity, StateMachine.Player.Rigidbody2D.velocity.x);
             }
         }
         private bool IsInRange(float from,float to,float value)
@@ -145,60 +149,60 @@ namespace Script.Player
         }
         protected void ZeroGravity()
         {
-            ShareStateData.DashData.StoredGravity = stateMachine.Player.Rigidbody2D.gravityScale;
-            stateMachine.Player.Rigidbody2D.gravityScale = 0;
+            Data.DashData.StoredGravity = StateMachine.Player.Rigidbody2D.gravityScale;
+            StateMachine.Player.Rigidbody2D.gravityScale = 0;
         }
         protected void RestoreGravity()
         {
-            stateMachine.Player.Rigidbody2D.gravityScale = ShareStateData.DashData.StoredGravity;
+            StateMachine.Player.Rigidbody2D.gravityScale = Data.DashData.StoredGravity;
         }
         #endregion
 
         #region Callback
         protected virtual void AddInputCallback()
         {
-            stateMachine.Player.InputReader.MoveEvent += OnMove;
-            stateMachine.Player.InputReader.DashEvent += OnDash;
-            stateMachine.Player.InputReader.AttackEvent += OnAttack;
-            stateMachine.Player.Health.TakeDamageEvent += TakeDamage;
+            StateMachine.Player.InputReader.MoveEvent += OnMove;
+            StateMachine.Player.InputReader.DashEvent += OnDash;
+            StateMachine.Player.InputReader.AttackEvent += OnAttack;
+            StateMachine.Player.Health.TakeDamageEvent += TakeDamage;
         }
         protected virtual void RemoveInputCallback()
         {
-            stateMachine.Player.InputReader.MoveEvent -= OnMove;
-            stateMachine.Player.InputReader.DashEvent -= OnDash;
-            stateMachine.Player.InputReader.AttackEvent -= OnAttack;
-            stateMachine.Player.Health.TakeDamageEvent -= TakeDamage;
+            StateMachine.Player.InputReader.MoveEvent -= OnMove;
+            StateMachine.Player.InputReader.DashEvent -= OnDash;
+            StateMachine.Player.InputReader.AttackEvent -= OnAttack;
+            StateMachine.Player.Health.TakeDamageEvent -= TakeDamage;
         }
         #endregion
 
         #region Input
         void OnMove(Vector2 moveInput)
         {
-            ShareStateData.MovementData.MoveInput = moveInput;
+            Data.MovementData.MoveInput = moveInput;
         }
         protected virtual void OnDash(bool press)
         {
-            if(press && !ShareStateData.DashData.IsCooldown)
-            stateMachine.ChangeState(stateMachine.DashingState);
+            if(press && !Data.DashData.IsCooldown)
+            StateMachine.ChangeState(StateMachine.DashingState);
         }
         protected virtual void OnAttack(bool press)
         {
-            if (press && !ShareStateData.AttackData.IsCooldown)
+            if (press && !Data.AttackData.IsCooldown)
             {
-                stateMachine.ChangeState(stateMachine.Attack);
+                StateMachine.ChangeState(StateMachine.Attack);
             }
         }
         protected virtual void TakeDamage(TakeDamageInfo info)
         {
-            ShareStateData.SetDamageInfo(info);
+            Data.SetDamageInfo(info);
             
             if (info.IsDead)
             {
-                stateMachine.ChangeState(stateMachine.Dead);
+                StateMachine.ChangeState(StateMachine.Dead);
             }
             else
             {
-                stateMachine.ChangeState(stateMachine.KnockBackState);
+                StateMachine.ChangeState(StateMachine.KnockBackState);
             }
         }
         #endregion

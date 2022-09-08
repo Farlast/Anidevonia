@@ -17,7 +17,7 @@ namespace Script.Player
             base.Enter();
             finishAnimation = false;
             timeCounter = 0;
-            stateMachine.Player.PlayerAnimation.LightStopAnimation();
+            StateMachine.Player.PlayerAnimation.LightStopAnimation();
             ResetVelocity();
         }
        
@@ -31,13 +31,13 @@ namespace Script.Player
         protected override void AddInputCallback()
         {
             base.AddInputCallback();
-            stateMachine.Player.InputReader.JumpEvent += OnJump;
+            StateMachine.Player.InputReader.JumpEvent += OnJump;
         }
 
         protected override void RemoveInputCallback()
         {
             base.RemoveInputCallback();
-            stateMachine.Player.InputReader.JumpEvent -= OnJump;
+            StateMachine.Player.InputReader.JumpEvent -= OnJump;
         }
         #endregion
         #region Main
@@ -54,16 +54,16 @@ namespace Script.Player
         {
             if (finishAnimation)
             {
-                stateMachine.ChangeState(stateMachine.Idling);
+                StateMachine.ChangeState(StateMachine.Idling);
             }
             else if (IsMoveHorizontal())
             {
-                stateMachine.ChangeState(stateMachine.Runing);
+                StateMachine.ChangeState(StateMachine.Runing);
             }
         }
         private void OnJump(bool press)
         {
-            stateMachine.ChangeState(stateMachine.JumpingState);
+            StateMachine.ChangeState(StateMachine.JumpingState);
         }
         #endregion
         

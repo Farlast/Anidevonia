@@ -32,22 +32,22 @@ namespace Script.Player
         #region Main
         private void StartAttack(int combo)
         {
-            stateMachine.Player.InputReader.ResetAttackBuffer();
+            StateMachine.Player.InputReader.ResetAttackBuffer();
             animationFinish = false;
-            stateMachine.Player.PlayerAnimation.AttackComboAnimation(combo);
-            TimerSystem.Create(() => { animationFinish = true; WaitAfterAttackFinish(); },ShareStateData.AttackData.AttackSpeed);
+            StateMachine.Player.PlayerAnimation.AttackComboAnimation(combo);
+            TimerSystem.Create(() => { animationFinish = true; WaitAfterAttackFinish(); },Data.AttackData.AttackSpeed);
             currentCombo++;
         }
         private void WaitAfterAttackFinish()
         {
             waitFinish = false;
-            TimerSystem.Create(() => { waitFinish = true; }, ShareStateData.AttackData.WaitForNextAttakTime);
+            TimerSystem.Create(() => { waitFinish = true; }, Data.AttackData.WaitForNextAttakTime);
         }
         private void CheckNextState()
         {
             if (!animationFinish) return;
 
-            if (stateMachine.Player.InputReader.IsAttackBuffering && currentCombo <= ShareStateData.AttackData.MaxCombo)
+            if (StateMachine.Player.InputReader.IsAttackBuffering && currentCombo <= Data.AttackData.MaxCombo)
             {
                 StartAttack(currentCombo);
                 return;
@@ -55,15 +55,15 @@ namespace Script.Player
 
             if (IsMoveHorizontal())
             {
-                ShareStateData.AttackData.SetEndComboCooldown();
-                stateMachine.ChangeState(stateMachine.Runing);
+                Data.AttackData.SetEndComboCooldown();
+                StateMachine.ChangeState(StateMachine.Runing);
                 return;
             }
            
             if(waitFinish)
             {
-                ShareStateData.AttackData.SetEndComboCooldown();
-                stateMachine.ChangeState(stateMachine.Idling);
+                Data.AttackData.SetEndComboCooldown();
+                StateMachine.ChangeState(StateMachine.Idling);
                 return;
             }
             

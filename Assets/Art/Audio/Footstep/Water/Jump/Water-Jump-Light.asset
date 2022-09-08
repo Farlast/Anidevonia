@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aabbf45cdffc7a4180fe4740dff1077, type: 3}
+  m_Name: Water-Jump-Light
+  m_EditorClassIdentifier: 
+  audios:
+  - {fileID: 8300000, guid: 35120d469fdffac4ebd3fad377c31682, type: 3}
+  - {fileID: 8300000, guid: 402f9885e0097c346866b5592eb9fadd, type: 3}
+  - {fileID: 8300000, guid: 17ca36cd42d9e404ea659cddc6d33749, type: 3}
+  - {fileID: 8300000, guid: bdc97fb988e06dd489b5b9732365570a, type: 3}
+  - {fileID: 8300000, guid: 5c1b0bf902b151048a185c377575212c, type: 3}
+  - {fileID: 8300000, guid: 2393e6d64d5365a479fb68004de80e5e, type: 3}

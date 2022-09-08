@@ -39,7 +39,7 @@ Material:
     m_Ints: []
     m_Floats:
     - Vector1_f7c130273c5747528f308bbaa7cbe9ba: 1
-    - _FadeValue: 0.307
+    - _FadeValue: 0
     m_Colors:
     - Color_7266aee46b7444ed96b938e32a05dad9: {r: 0.16777788, g: 0.55587316, b: 1.2265139, a: 0}
   m_BuildTextureStacks: []

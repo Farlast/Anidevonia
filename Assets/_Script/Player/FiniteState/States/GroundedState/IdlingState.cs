@@ -13,7 +13,7 @@ namespace Script.Player
             base.Enter();
 
             ResetVelocity();
-            stateMachine.Player.PlayerAnimation.IdleAnimation();
+            StateMachine.Player.PlayerAnimation.IdleAnimation();
         }
         public override void Update()
         {
@@ -24,13 +24,13 @@ namespace Script.Player
         protected override void AddInputCallback()
         {
             base.AddInputCallback();
-            stateMachine.Player.InputReader.JumpEvent += OnJump;
+            StateMachine.Player.InputReader.JumpEvent += OnJump;
         }
 
         protected override void RemoveInputCallback()
         {
             base.RemoveInputCallback();
-            stateMachine.Player.InputReader.JumpEvent -= OnJump;
+            StateMachine.Player.InputReader.JumpEvent -= OnJump;
         }
         #endregion
 
@@ -41,14 +41,14 @@ namespace Script.Player
         }
         private void CheckSwitchState()
         {
-            if(GetMoveInput() != Vector2.zero)
+            if(GetMoveInput().x != 0)
             {
-                stateMachine.ChangeState(stateMachine.Runing);
+                StateMachine.ChangeState(StateMachine.Runing);
             }
         }
         private void OnJump(bool press)
         {
-            stateMachine.ChangeState(stateMachine.JumpingState);
+            StateMachine.ChangeState(StateMachine.JumpingState);
         }
         #endregion
     }

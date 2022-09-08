@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aabbf45cdffc7a4180fe4740dff1077, type: 3}
+  m_Name: MetalV2-Run
+  m_EditorClassIdentifier: 
+  audios:
+  - {fileID: 8300000, guid: 0c9387bf63f3a8d4e99de772cdb283f9, type: 3}
+  - {fileID: 8300000, guid: e137beac01bd2554ba963e5ed833c2f8, type: 3}
+  - {fileID: 8300000, guid: a89147067ee949a4b84a35e55102e335, type: 3}
+  - {fileID: 8300000, guid: 51b2fd13fb71b374cbb3ad409494a106, type: 3}
+  - {fileID: 8300000, guid: f1beb3e333c836f4a8f85bd6855fd82f, type: 3}

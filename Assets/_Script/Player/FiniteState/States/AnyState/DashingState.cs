@@ -20,19 +20,19 @@ namespace Script.Player
             base.Exit();
             ResetVelocity();
             RestoreGravity();
-            ShareStateData.DashData.SetCoolDown();
+            Data.DashData.SetCoolDown();
         }
         public IEnumerator Dash(float time)
         {
             yield return Helpers.GetWait(time);
 
-            if (ShareStateData.JumpData.IsGround)
+            if (IsGround())
             {
-                stateMachine.ChangeState(stateMachine.StopingStateLight);
+                StateMachine.ChangeState(StateMachine.StopingStateLight);
             }
             else
             {
-                stateMachine.ChangeState(stateMachine.FallingState);
+                StateMachine.ChangeState(StateMachine.FallingState);
             }
         }
         protected override void OnDash(bool press)
@@ -42,17 +42,17 @@ namespace Script.Player
         {
             if (IsMoveHorizontal())
             {
-                stateMachine.Player.PlayerAnimation.DashAnimation();
-                NewVector.Set(ShareStateData.DashData.DashSpeed * stateMachine.Player.InputReader.LatesDirection.x, 0);
-                stateMachine.Player.Rigidbody2D.velocity = NewVector;
-                stateMachine.Player.StartCoroutine(Dash(ShareStateData.DashData.DashTime));
+                StateMachine.Player.PlayerAnimation.DashAnimation();
+                NewVector.Set(Data.DashData.DashSpeed * StateMachine.Player.InputReader.LatesDirection.x, 0);
+                StateMachine.Player.Rigidbody2D.velocity = NewVector;
+                StateMachine.Player.StartCoroutine(Dash(Data.DashData.DashTime));
             }
             else
             {
-                stateMachine.Player.PlayerAnimation.DashAnimation();
-                NewVector.Set(ShareStateData.DashData.DashSpeed * stateMachine.Player.InputReader.LatesDirection.x * -1, 0);
-                stateMachine.Player.Rigidbody2D.velocity = NewVector;
-                stateMachine.Player.StartCoroutine(Dash(ShareStateData.DashData.BackDashTime));
+                StateMachine.Player.PlayerAnimation.DashAnimation();
+                NewVector.Set(Data.DashData.DashSpeed * StateMachine.Player.InputReader.LatesDirection.x * -1, 0);
+                StateMachine.Player.Rigidbody2D.velocity = NewVector;
+                StateMachine.Player.StartCoroutine(Dash(Data.DashData.BackDashTime));
             }
         }
         protected override void AutoFallWhenNotground()

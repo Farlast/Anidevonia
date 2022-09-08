@@ -15,7 +15,7 @@ namespace Script.Player
         {
             base.Enter();
             GetKnockBack();
-            stateMachine.Player.PlayerAnimation.KnockBackAnimation();
+            StateMachine.Player.PlayerAnimation.KnockBackAnimation();
         }
         protected override void AutoFallWhenNotground()
         {
@@ -30,12 +30,12 @@ namespace Script.Player
 
             NewVector.Set(KnockBackValue() * KnockBackDirection(),KnockBackValue());
             
-            stateMachine.Player.Rigidbody2D.AddForce(NewVector,ForceMode2D.Impulse);
+            StateMachine.Player.Rigidbody2D.AddForce(NewVector,ForceMode2D.Impulse);
         }
         private float KnockBackValue()
         {
             float value = 0;
-            switch (ShareStateData.DamageTakenInfo.DamageInfo.KnockBack)
+            switch (Data.DamageTakenInfo.DamageInfo.KnockBack)
             {
                 case KnockbackType.None:
                     value = 0;
@@ -44,10 +44,10 @@ namespace Script.Player
                     value = 0;
                     break;
                 case KnockbackType.Low:
-                    value = ShareStateData.KnockBackData.KnockBackForceLow;
+                    value = Data.KnockBackData.KnockBackForceLow;
                     break;
                 case KnockbackType.Heavy:
-                    value = ShareStateData.KnockBackData.KnockBackForceHeavy;
+                    value = Data.KnockBackData.KnockBackForceHeavy;
                     break;
                 default:
                     break;
@@ -56,20 +56,20 @@ namespace Script.Player
         }
         private float KnockBackDirection()
         {
-            return ShareStateData.DamageTakenInfo.DamageInfo.GetDirectionFromTarget(stateMachine.Player.transform.position);
+            return Data.DamageTakenInfo.DamageInfo.GetDirectionFromTarget(StateMachine.Player.transform.position);
         }
         private void Stunt()
         {
-            TimerSystem.Create(() => { ChangeState(); },ShareStateData.KnockBackData.StuntTime);
+            TimerSystem.Create(() => { ChangeState(); },Data.KnockBackData.StuntTime);
         }
         private void ChangeState()
         {
-            stateMachine.ChangeState(stateMachine.Idling);
+            StateMachine.ChangeState(StateMachine.Idling);
         }
-        protected override void AddInputCallback()
+        protected override void OnDash(bool press)
         {
         }
-        protected override void RemoveInputCallback()
+        protected override void OnAttack(bool press)
         {
         }
         #endregion

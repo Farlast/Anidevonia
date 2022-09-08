@@ -7,7 +7,6 @@ namespace Script.Player
     public class JumpData
     {
         public float JumpForce;
-        public bool IsGround;
         public float LandingAnimationTime;
     }
 }

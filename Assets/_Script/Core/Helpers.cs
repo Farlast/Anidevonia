@@ -58,4 +58,16 @@ public static class Helpers
         if (n < 0) n += 360;
         return n;
     }
+    public static void SetUpMaterial(Material material ,Transform spriteParent)
+    {
+        for (int i = 0; i < spriteParent.childCount; i++)
+        {
+            GameObject child = spriteParent.GetChild(i).gameObject;
+
+            if (child.TryGetComponent(out SpriteRenderer sprite))
+            {
+                sprite.material = material;
+            }
+        }
+    }
 }

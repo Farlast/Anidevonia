@@ -13,8 +13,8 @@ namespace Script.Player
         public override void Enter()
         {
             base.Enter();
-            currentMoveDirection = stateMachine.Player.InputReader.LatesDirection;
-            stateMachine.Player.PlayerAnimation.LightStopAnimation();
+            currentMoveDirection = StateMachine.Player.InputReader.LatesDirection;
+            StateMachine.Player.PlayerAnimation.LightStopAnimation();
         }
         public override void FixUpdate()
         {
@@ -26,11 +26,11 @@ namespace Script.Player
             base.Update();
             if (IsStopMoving())
             {
-                stateMachine.ChangeState(stateMachine.Idling);
+                StateMachine.ChangeState(StateMachine.Idling);
             }
-            if (!ShareStateData.JumpData.IsGround)
+            if (!IsGround())
             {
-                stateMachine.ChangeState(stateMachine.FallingState);
+                StateMachine.ChangeState(StateMachine.FallingState);
             }
         }
     }

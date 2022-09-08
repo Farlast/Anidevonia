@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aabbf45cdffc7a4180fe4740dff1077, type: 3}
+  m_Name: Wood-Run
+  m_EditorClassIdentifier: 
+  audios:
+  - {fileID: 8300000, guid: 13eee70c3cb426e488a4654fca87d790, type: 3}
+  - {fileID: 8300000, guid: 6f24fe1da744ca046b1727714e78aafb, type: 3}
+  - {fileID: 8300000, guid: b93eb7c93dac1a34a91b6ae12d7423ce, type: 3}
+  - {fileID: 8300000, guid: 6b7965415eb33a342be376af337aabb2, type: 3}
